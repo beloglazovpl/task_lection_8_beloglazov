@@ -22,19 +22,19 @@ def get_cook_book(file_name):
 pprint(get_cook_book('recipes.txt'))
 
 
-def get_shop_list_by_dishes(dishes, person_count):
+def get_shop_list_by_dishes(dishes, person):
     shop_list = dict()
     for dish in dishes:
-        for k, v in get_cook_book('recipes.txt').items():
-            if k == dish:
-                for a in v:
-                    indgredient_name, quantity, measure = a.values()
-                    temp_dict = {'measure': measure, 'quantity': quantity * person_count}
-                    if indgredient_name in shop_list.keys():
-                        temp_dict['quantity'] = shop_list[indgredient_name]['quantity'] + (quantity * person_count)
+        for key, value in get_cook_book('recipes.txt').items():
+            if key == dish:
+                for item in value:
+                    ingredient_name, quantity, measure = item.values()
+                    temp_dict = {'measure': measure, 'quantity': quantity * person}
+                    if ingredient_name in shop_list.keys():
+                        temp_dict['quantity'] = shop_list[ingredient_name]['quantity'] + (quantity * person)
                     else:
-                        temp_dict['quantity'] = quantity * person_count
-                    shop_list[indgredient_name] = temp_dict
+                        temp_dict['quantity'] = quantity * person
+                    shop_list[ingredient_name] = temp_dict
     return shop_list
 
 
